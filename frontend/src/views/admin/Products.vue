@@ -1,17 +1,17 @@
 <template>
   <div>
     <div class="page-head">
-      <div><h2>Gestion des produits</h2><p>{{ total }} produits au total</p></div>
-      <button class="btn btn-primary" @click="openAdd"><i class="fa fa-plus"></i> Ajouter un produit</button>
+      <div><h2>Gestion des produits</h2><p>{{ total }} total products</p></div>
+      <button class="btn btn-primary" @click="openAdd"><i class="fa fa-plus"></i> Add product</button>
     </div>
     <div class="card">
       <div class="toolbar">
-        <input v-model="search" placeholder="Rechercher..." @input="fetchProds" style="max-width:260px" />
-        <select v-model="catFilter" @change="fetchProds"><option value="">Toutes catégories</option><option v-for="c in categories" :key="c._id" :value="c._id">{{ c.name }}</option></select>
+        <input v-model="search" placeholder="Search..." @input="fetchProds" style="max-width:260px" />
+        <select v-model="catFilter" @change="fetchProds"><option value="">All categories</option><option v-for="c in categories" :key="c._id" :value="c._id">{{ c.name }}</option></select>
       </div>
       <div v-if="loading" class="page-loader"><div class="spinner"></div></div>
       <table v-else class="dt">
-        <thead><tr><th>Photo</th><th>Produit</th><th>Catégorie</th><th>Prix</th><th>Stock</th><th>Statut</th><th>Actions</th></tr></thead>
+        <thead><tr><th>Photo</th><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead>
         <tbody>
           <tr v-for="p in products" :key="p._id">
             <td><img :src="p.image" @error="e=>e.target.src='https://placehold.co/44x44'" style="width:44px;height:44px;object-fit:cover;border-radius:6px;" /></td>
@@ -34,15 +34,15 @@
     <!-- Modal -->
     <div v-if="modal" class="modal-backdrop" @click.self="modal=false">
       <div class="modal-box">
-        <div class="modal-head"><h3>{{ editing ? 'Modifier' : 'Nouveau' }} produit</h3><button @click="modal=false"><i class="fa fa-times"></i></button></div>
+        <div class="modal-head"><h3>{{ editing ? 'Edit' : 'New' }} produit</h3><button @click="modal=false"><i class="fa fa-times"></i></button></div>
         <form @submit.prevent="saveProd" class="modal-body">
-          <div class="fg2"><div class="form-group"><label>Nom *</label><input v-model="form.name" required /></div><div class="form-group"><label>Catégorie</label><select v-model="form.categoryId"><option value="">—</option><option v-for="c in categories" :key="c._id" :value="c._id">{{ c.name }}</option></select></div></div>
+          <div class="fg2"><div class="form-group"><label>Nom *</label><input v-model="form.name" required /></div><div class="form-group"><label>Category</label><select v-model="form.categoryId"><option value="">—</option><option v-for="c in categories" :key="c._id" :value="c._id">{{ c.name }}</option></select></div></div>
           <div class="form-group"><label>Description</label><textarea v-model="form.description" rows="2"></textarea></div>
-          <div class="fg3"><div class="form-group"><label>Prix (RWF) *</label><input v-model.number="form.price" type="number" required /></div><div class="form-group"><label>Prix barré</label><input v-model.number="form.originalPrice" type="number" /></div><div class="form-group"><label>Stock</label><input v-model.number="form.stock" type="number" /></div></div>
-          <div class="fg2"><div class="form-group"><label>Condition</label><select v-model="form.condition"><option>New</option><option>Like New</option><option>Used</option></select></div><div class="form-group"><label>Localisation</label><input v-model="form.location" placeholder="Kigali" /></div></div>
+          <div class="fg3"><div class="form-group"><label>Price (RWF) *</label><input v-model.number="form.price" type="number" required /></div><div class="form-group"><label>Prix barré</label><input v-model.number="form.originalPrice" type="number" /></div><div class="form-group"><label>Stock</label><input v-model.number="form.stock" type="number" /></div></div>
+          <div class="fg2"><div class="form-group"><label>Condition</label><select v-model="form.condition"><option>New</option><option>Like New</option><option>Used</option></select></div><div class="form-group"><label>Location</label><input v-model="form.location" placeholder="Kigali" /></div></div>
           <div class="form-group"><label>URL Image</label><input v-model="form.image" placeholder="https://..." /></div>
           <div class="form-group"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" v-model="form.featured" style="width:auto" /> Produit en vedette</label></div>
-          <div class="modal-footer"><button type="button" class="btn btn-secondary" @click="modal=false">Annuler</button><button type="submit" class="btn btn-primary" :disabled="saving"><i class="fa fa-save"></i> {{ saving ? 'Sauvegarde...' : 'Sauvegarder' }}</button></div>
+          <div class="modal-footer"><button type="button" class="btn btn-secondary" @click="modal=false">Cancel</button><button type="submit" class="btn btn-primary" :disabled="saving"><i class="fa fa-save"></i> {{ saving ? 'Save...' : 'Save' }}</button></div>
         </form>
       </div>
     </div>

@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="page-head">
-      <div><h2>Gestion des commandes</h2><p>{{ total }} commandes au total</p></div>
+      <div><h2>Gestion des commandes</h2><p>{{ total }} total orders</p></div>
       <div class="head-filters">
-        <select v-model="statusFilter" @change="fetchOrds"><option value="">Tous les statuts</option><option value="pending">En attente</option><option value="processing">Traitement</option><option value="shipped">Expédiée</option><option value="delivered">Livrée</option><option value="cancelled">Annulée</option></select>
+        <select v-model="statusFilter" @change="fetchOrds"><option value="">Tous les statuts</option><option value="pending">Waiting</option><option value="processing">Traitement</option><option value="shipped">Expédiée</option><option value="delivered">Delivery</option><option value="cancelled">Cancel</option></select>
       </div>
     </div>
     <div class="card">
       <div v-if="loading" class="page-loader"><div class="spinner"></div></div>
       <table v-else class="dt">
-        <thead><tr><th>Commande</th><th>Client</th><th>Téléphone</th><th>Montant</th><th>Paiement</th><th>Date</th><th>Statut</th><th>Actions</th></tr></thead>
+        <thead><tr><th>Order</th><th>Client</th><th>Telephone</th><th>Montant</th><th>Payment</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
         <tbody>
           <tr v-for="o in orders" :key="o._id">
             <td><strong style="color:var(--primary)">#{{ o.orderNumber }}</strong></td>
@@ -20,11 +20,11 @@
             <td>{{ fmtDate(o.createdAt) }}</td>
             <td>
               <select :value="o.status" @change="updateStatus(o._id, $event.target.value)" class="status-sel" :class="o.status">
-                <option value="pending">En attente</option>
+                <option value="pending">Waiting</option>
                 <option value="processing">Traitement</option>
                 <option value="shipped">Expédiée</option>
-                <option value="delivered">Livrée</option>
-                <option value="cancelled">Annulée</option>
+                <option value="delivered">Delivery</option>
+                <option value="cancelled">Cancel</option>
               </select>
             </td>
             <td><button class="btn btn-secondary btn-sm" @click="viewOrder(o)"><i class="fa fa-eye"></i></button></td>
@@ -49,7 +49,7 @@
             <div class="oi-block"><h4>Paiement</h4><p>{{ payLabel(selected.paymentMethod) }}</p><p class="total-big">{{ fmt(selected.total) }} RWF</p></div>
           </div>
           <h4 style="margin: 16px 0 10px">Articles commandés</h4>
-          <table class="dt"><thead><tr><th>Produit</th><th>Qté</th><th>Prix unit.</th><th>Total</th></tr></thead>
+          <table class="dt"><thead><tr><th>Produit</th><th>Qté</th><th>Price unit.</th><th>Total</th></tr></thead>
             <tbody><tr v-for="item in selected.items" :key="item.id"><td>{{ item.name }}</td><td>{{ item.qty }}</td><td>{{ fmt(item.price) }} RWF</td><td><strong>{{ fmt(item.price * item.qty) }} RWF</strong></td></tr></tbody>
           </table>
           <div v-if="selected.notes" class="order-notes"><i class="fa fa-sticky-note"></i> {{ selected.notes }}</div>

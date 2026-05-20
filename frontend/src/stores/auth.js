@@ -8,11 +8,17 @@ export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = computed(() => !!token.value)
 
   async function login(email, password) {
-    const { data } = await axios.post('/api/auth/login', { email, password })
-    token.value = data.token; user.value = data.user
-    localStorage.setItem('kt_admin_token', data.token); localStorage.setItem('kt_admin_user', JSON.stringify(data.user))
-    axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`
-    return data
+    // Temporary mock — replace with real API call when DB is ready
+    if (email === 'kliktradeshop@gmail.com' && password === 'cortis2005') {
+      const mockToken = 'mock-admin-token'
+      const mockUser = { email, role: 'admin' }
+      token.value = mockToken
+      user.value = mockUser
+      localStorage.setItem('kt_admin_token', mockToken)
+      localStorage.setItem('kt_admin_user', JSON.stringify(mockUser))
+      return { token: mockToken, user: mockUser }
+    }
+    throw { response: { data: { error: 'Invalid credentials' } } }
   }
 
   function logout() {

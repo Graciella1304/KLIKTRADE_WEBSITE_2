@@ -4,25 +4,25 @@
     <div class="container sell-page">
       <div class="sell-header">
         <div>
-          <h1><i class="fa fa-plus-circle"></i> Publier une annonce</h1>
+          <h1><i class="fa fa-plus-circle"></i> Add product</h1>
           <p>Remplissez le formulaire ci-dessous pour mettre votre produit en vente</p>
         </div>
-        <RouterLink to="/listing" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Retour</RouterLink>
+        <RouterLink to="/listing" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</RouterLink>
       </div>
 
       <div v-if="!userStore.isLoggedIn" class="not-logged card">
         <i class="fa fa-lock"></i>
         <h2>Connexion requise</h2>
-        <p>Vous devez être connecté pour publier une annonce.</p>
-        <RouterLink to="/signin" class="btn btn-primary btn-lg"><i class="fa fa-sign-in-alt"></i> Se connecter</RouterLink>
-        <RouterLink to="/signin?tab=register" class="btn btn-secondary btn-lg"><i class="fa fa-user-plus"></i> Créer un compte</RouterLink>
+        <p>Sign in before publishing/adding products</p>
+        <RouterLink to="/signin" class="btn btn-primary btn-lg"><i class="fa fa-sign-in-alt"></i> Sign in</RouterLink>
+        <RouterLink to="/signin?tab=register" class="btn btn-secondary btn-lg"><i class="fa fa-user-plus"></i> Create account</RouterLink>
       </div>
 
       <form v-else @submit.prevent="publish" class="sell-layout">
         <div class="sell-form-main">
           <!-- Photos -->
           <div class="form-card card">
-            <h2><i class="fa fa-camera"></i> Photos du produit</h2>
+            <h2><i class="fa fa-camera"></i> Photos of product</h2>
             <div class="photo-upload-area" @click="$refs.photoInput.click()" @dragover.prevent @drop.prevent="handleDrop">
               <div v-if="imagePreview" class="img-preview-wrap">
                 <img :src="imagePreview" alt="Preview" />
@@ -44,26 +44,26 @@
 
           <!-- Details -->
           <div class="form-card card">
-            <h2><i class="fa fa-info-circle"></i> Détails de l'annonce</h2>
+            <h2><i class="fa fa-info-circle"></i> Product details</h2>
             <div class="form-group">
-              <label>Titre de l'annonce *</label>
+              <label>Product name *</label>
               <input v-model="form.name" required placeholder="Ex: Samsung Galaxy A54 128GB" maxlength="100" />
-              <small>{{ form.name.length }}/100 caractères</small>
+              <small>{{ form.name.length }}/100 characteristics</small>
             </div>
             <div class="form-row-2">
               <div class="form-group">
-                <label>Catégorie *</label>
+                <label>Category *</label>
                 <select v-model="form.categoryId" required>
-                  <option value="">Choisir une catégorie</option>
+                  <option value="">Choose a category</option>
                   <option v-for="c in categories" :key="c._id" :value="c._id">{{ c.name }}</option>
                 </select>
               </div>
               <div class="form-group">
-                <label>État</label>
+                <label>State</label>
                 <select v-model="form.condition">
-                  <option value="New">Neuf</option>
-                  <option value="Like New">Comme neuf</option>
-                  <option value="Used">Usagé</option>
+                  <option value="New">New</option>
+                  <option value="Like New">Like New</option>
+                  <option value="Used">Used</option>
                   <option value="For Parts">Pour pièces</option>
                 </select>
               </div>
@@ -76,29 +76,29 @@
 
           <!-- Price & Location -->
           <div class="form-card card">
-            <h2><i class="fa fa-tag"></i> Prix &amp; Localisation</h2>
+            <h2><i class="fa fa-tag"></i> Price &amp; Location</h2>
             <div class="form-row-2">
               <div class="form-group">
-                <label>Prix (RWF) *</label>
-                <div class="inp-prefix"><span>RWF</span><input v-model.number="form.price" type="number" min="0" required placeholder="Ex: 50000" /></div>
+                <label>Price (RWF) *</label>
+                <div class="inp-prefix"><span>RWF</span><input v-model.number="form.price" type="number" min="0" required placeholder="••••" /></div>
               </div>
               <div class="form-group">
-                <label>Prix barré (RWF)</label>
-                <div class="inp-prefix"><span>RWF</span><input v-model.number="form.originalPrice" type="number" min="0" placeholder="Prix original" /></div>
+                <label>Price (RWF)</label>
+                <div class="inp-prefix"><span>RWF</span><input v-model.number="form.originalPrice" type="number" min="0" placeholder="Original price" /></div>
               </div>
             </div>
             <div class="form-row-2">
               <div class="form-group">
-                <label>Ville / Emplacement</label>
+                <label>City / Emplacement</label>
                 <input v-model="form.location" placeholder="Ex: Kigali, Musanze..." />
               </div>
               <div class="form-group">
-                <label>Téléphone contact</label>
+                <label>Contact</label>
                 <input v-model="form.phone" placeholder="+250 788 000 000" />
               </div>
             </div>
             <div class="form-group">
-              <label>Quantité disponible</label>
+              <label>Available quantity</label>
               <input v-model.number="form.stock" type="number" min="1" placeholder="1" />
             </div>
           </div>
@@ -107,7 +107,7 @@
         <!-- Sidebar -->
         <div class="sell-sidebar">
           <div class="card publish-card">
-            <h3>Publier l'annonce</h3>
+            <h3>Publish product</h3>
             <div class="publish-checklist">
               <div class="pcheck" :class="{ done: form.name }"><i :class="form.name ? 'fa fa-check-circle' : 'fa fa-circle'"></i><span>Titre ajouté</span></div>
               <div class="pcheck" :class="{ done: form.categoryId }"><i :class="form.categoryId ? 'fa fa-check-circle' : 'fa fa-circle'"></i><span>Catégorie choisie</span></div>
@@ -115,20 +115,20 @@
               <div class="pcheck" :class="{ done: imagePreview || form.image }"><i :class="(imagePreview || form.image) ? 'fa fa-check-circle' : 'fa fa-circle'"></i><span>Photo ajoutée</span></div>
             </div>
             <button type="submit" class="btn btn-primary btn-block btn-lg" :disabled="publishing">
-              <span v-if="publishing"><i class="fa fa-spinner fa-spin"></i> Publication...</span>
-              <span v-else><i class="fa fa-paper-plane"></i> Publier maintenant</span>
+              <span v-if="publishing"><i class="fa fa-spinner fa-spin"></i> Publishing...</span>
+              <span v-else><i class="fa fa-paper-plane"></i> Publish now</span>
             </button>
             <p class="free-note"><i class="fa fa-check"></i> Publication 100% gratuite</p>
           </div>
 
           <div class="card tips-card">
-            <h3><i class="fa fa-lightbulb"></i> Conseils</h3>
+            <h3><i class="fa fa-lightbulb"></i> Advice</h3>
             <ul>
-              <li>Utilisez des photos claires sur fond blanc</li>
-              <li>Mentionnez toutes les caractéristiques</li>
-              <li>Soyez honnête sur l'état du produit</li>
+              <li>Upload clear images of the product</li>
+              <li>Mention all characteristics</li>
+              <li>Be honest about the product's quality/state</li>
               <li>Fixez un prix juste et compétitif</li>
-              <li>Indiquez votre numéro MoMo</li>
+              <li>Indicate your MoMo code</li>
             </ul>
           </div>
         </div>

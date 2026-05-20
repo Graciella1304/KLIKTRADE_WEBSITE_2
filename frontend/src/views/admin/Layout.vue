@@ -2,7 +2,7 @@
   <div class="admin-shell">
     <aside :class="['sidebar', { collapsed: sideCollapsed }]">
       <div class="sb-logo">
-        <img src="/logo.png" alt="KlikTrade" class="sb-logo-img" />
+        <img src="/logo.png" style="width: 20%; height: 100%;" />
         <div v-if="!sideCollapsed" class="sb-logo-text"><strong>KlikTrade</strong><span>Admin Panel</span></div>
         <button class="collapse-btn" @click="sideCollapsed = !sideCollapsed"><i :class="sideCollapsed ? 'fa fa-chevron-right' : 'fa fa-chevron-left'"></i></button>
       </div>

@@ -74,6 +74,8 @@
 <script setup>
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
+import { useI18nStore } from '../stores/i18n'
+const { t } = useI18nStore()
 </script>
 
 <style scoped>

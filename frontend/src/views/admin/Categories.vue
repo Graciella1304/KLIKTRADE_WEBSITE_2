@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="page-head">
-      <div><h2>Catégories</h2><p>{{ categories.length }} catégories</p></div>
-      <button class="btn btn-primary" @click="openAdd"><i class="fa fa-plus"></i> Ajouter</button>
+      <div><h2>Categories</h2><p>{{ categories.length }} categories</p></div>
+      <button class="btn btn-primary" @click="openAdd"><i class="fa fa-plus"></i> Add category</button>
     </div>
     <div class="cats-grid">
       <div v-for="c in categories" :key="c._id" class="cat-item card">
@@ -18,19 +18,19 @@
       </div>
       <button class="cat-item card add-card" @click="openAdd">
         <i class="fa fa-plus-circle"></i>
-        <span>Nouvelle catégorie</span>
+        <span>New Category</span>
       </button>
     </div>
 
     <div v-if="modal" class="modal-backdrop" @click.self="modal=false">
       <div class="modal-box">
-        <div class="modal-head"><h3>{{ editing ? 'Modifier' : 'Nouvelle' }} catégorie</h3><button @click="modal=false"><i class="fa fa-times"></i></button></div>
+        <div class="modal-head"><h3>{{ editing ? 'Edit' : 'New' }} category</h3><button @click="modal=false"><i class="fa fa-times"></i></button></div>
         <form @submit.prevent="saveCat" class="modal-body">
-          <div class="form-group"><label>Nom *</label><input v-model="form.name" required placeholder="Ex: Électronique" /></div>
-          <div class="form-group"><label>Slug (URL)</label><input v-model="form.slug" placeholder="electronique" /></div>
+          <div class="form-group"><label>Name *</label><input v-model="form.name" required placeholder="Ex: Électronics" /></div>
+          <div class="form-group"><label>Slug (URL)</label><input v-model="form.slug" placeholder="electronics" /></div>
           <div class="form-group"><label>URL Image</label><input v-model="form.image" placeholder="https://..." /></div>
           <div v-if="form.image" class="img-prev"><img :src="form.image" alt="Preview" @error="e=>e.target.style.display='none'" /></div>
-          <div class="modal-footer"><button type="button" class="btn btn-secondary" @click="modal=false">Annuler</button><button type="submit" class="btn btn-primary" :disabled="saving">{{ saving ? 'Sauvegarde...' : 'Sauvegarder' }}</button></div>
+          <div class="modal-footer"><button type="button" class="btn btn-secondary" @click="modal=false">Cancel</button><button type="submit" class="btn btn-primary" :disabled="saving">{{ saving ? 'Save...' : 'Save' }}</button></div>
         </form>
       </div>
     </div>

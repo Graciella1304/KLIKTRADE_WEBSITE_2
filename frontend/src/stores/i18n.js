@@ -267,13 +267,15 @@ export const useI18nStore = defineStore('i18n', () => {
   const t = reactive({})
   deepAssign(t, translations[lang.value] || translations.en)
 
-  function setLang(l) {
-    if (translations[l]) {
-      lang.value = l
-      localStorage.setItem('kt_lang', l)
-      deepAssign(t, translations[l])
-    }
+function setLang(l) {
+  if (translations[l]) {
+    lang.value = l
+    localStorage.setItem('kt_lang', l)
+    // Clear existing keys first, then assign
+    Object.keys(t).forEach(key => delete t[key])
+    deepAssign(t, translations[l])
   }
+}
 
   const availableLanguages = [
     { code: 'en', name: 'English', flag: '🇬🇧' },

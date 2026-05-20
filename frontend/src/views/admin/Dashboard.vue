@@ -7,7 +7,7 @@
         <div class="sc-body">
           <p class="sc-label">Total Revenue</p>
           <h3 class="sc-value">{{ fmt(stats.revenue) }} <span>RWF</span></h3>
-          <p class="sc-trend up"><i class="fa fa-arrow-up"></i> +12.5% this month</p>
+          
         </div>
       </div>
       <div class="stat-card">
@@ -15,7 +15,7 @@
         <div class="sc-body">
           <p class="sc-label">Total Orders</p>
           <h3 class="sc-value">{{ stats.orders }}</h3>
-          <p class="sc-trend up"><i class="fa fa-arrow-up"></i> +8.3% this month</p>
+         
         </div>
       </div>
       <div class="stat-card">
@@ -23,7 +23,7 @@
         <div class="sc-body">
           <p class="sc-label">Active Products</p>
           <h3 class="sc-value">{{ stats.products }}</h3>
-          <p class="sc-trend up"><i class="fa fa-arrow-up"></i> +5 this week</p>
+         
         </div>
       </div>
       <div class="stat-card">
@@ -31,7 +31,7 @@
         <div class="sc-body">
           <p class="sc-label">Registered Users</p>
           <h3 class="sc-value">{{ stats.users }}</h3>
-          <p class="sc-trend up"><i class="fa fa-arrow-up"></i> +24 new</p>
+          
         </div>
       </div>
     </div>

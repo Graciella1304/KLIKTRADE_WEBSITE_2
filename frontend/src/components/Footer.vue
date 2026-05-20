@@ -4,7 +4,7 @@
       <div class="container footer-grid">
         <div class="col-brand">
           <div class="footer-logo">
-            <img src="/logo.png" alt="KlikTrade" class="fl-img" />
+            <img src="/logo.png" style="width: 15%; height: 15%;"/>
             <div>
               <h3>KlikTrade</h3>
               <span>Rwanda</span>
@@ -41,7 +41,7 @@
         <div class="col-contact">
           <h4>Contact</h4>
           <ul>
-            <li><i class="fa fa-envelope"></i> support@kliktrade.rw</li>
+            <li><i class="fa fa-envelope"></i> kliktradeshop@gmail.com</li>
             <li><i class="fa fa-phone"></i> +250 788 000 000</li>
             <li><i class="fa fa-map-marker-alt"></i> Kigali, Rwanda</li>
             <li><i class="fa fa-clock"></i> Mon – Sat: 8am – 6pm</li>
@@ -52,6 +52,7 @@
               <span class="pay-chip">MTN MoMo</span>
               <span class="pay-chip">Airtel Money</span>
               <span class="pay-chip">Cash</span>
+              <span class="pay-chip">Bank Transfer</span>
             </div>
           </div>
         </div>

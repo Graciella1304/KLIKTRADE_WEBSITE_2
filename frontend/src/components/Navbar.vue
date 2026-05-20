@@ -7,7 +7,7 @@
         <div class="topbar-right">
           <span><i class="fa fa-phone"></i> +250 788 000 000</span>
           <span class="divider">|</span>
-          <span><i class="fa fa-envelope"></i> support@kliktrade.rw</span>
+          <span><i class="fa fa-envelope"></i> kliktradeshop@gmail.com</span>
         </div>
       </div>
     </div>

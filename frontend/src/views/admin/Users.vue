@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="page-head">
-      <div><h2>Gestion des utilisateurs</h2><p>{{ total }} utilisateurs au total</p></div>
+      <div><h2>Gestion des utilisateurs</h2><p>{{ total }} total users</p></div>
     </div>
     <div class="card">
       <div class="toolbar"><input v-model="search" placeholder="Rechercher un utilisateur..." style="max-width:280px" /></div>
       <div v-if="loading" class="page-loader"><div class="spinner"></div></div>
       <table v-else class="dt">
-        <thead><tr><th>Utilisateur</th><th>Email</th><th>Téléphone</th><th>Rôle</th><th>Inscription</th><th>Actions</th></tr></thead>
+        <thead><tr><th>User</th><th>Email</th><th>Telephone</th><th>Role</th><th>Description</th><th>Actions</th></tr></thead>
         <tbody>
           <tr v-for="u in filtered" :key="u._id">
             <td>
@@ -32,14 +32,14 @@
     </div>
     <div v-if="roleModal" class="modal-backdrop" @click.self="roleModal=false">
       <div class="modal-box">
-        <div class="modal-head"><h3>Changer le rôle</h3><button @click="roleModal=false"><i class="fa fa-times"></i></button></div>
+        <div class="modal-head"><h3>Change role</h3><button @click="roleModal=false"><i class="fa fa-times"></i></button></div>
         <div class="modal-body">
-          <p style="margin-bottom:16px">Utilisateur: <strong>{{ selectedUser.name }}</strong></p>
-          <div class="form-group"><label>Rôle</label>
+          <p style="margin-bottom:16px">User: <strong>{{ selectedUser.name }}</strong></p>
+          <div class="form-group"><label>Role</label>
             <select v-model="newRole">
-              <option value="buyer">Acheteur (buyer)</option>
-              <option value="seller">Vendeur (seller)</option>
-              <option value="admin">Administrateur (admin)</option>
+              <option value="buyer">Buyer (buyer)</option>
+              <option value="seller">Sender (seller)</option>
+              <option value="admin">Administrator (admin)</option>
             </select>
           </div>
           <div class="modal-footer"><button class="btn btn-secondary" @click="roleModal=false">Annuler</button><button class="btn btn-primary" @click="saveRole">Enregistrer</button></div>
@@ -72,9 +72,9 @@ async function saveRole() {
   } catch { toast.error('Erreur') }
 }
 async function deleteUser(id) {
-  if (!confirm('Supprimer cet utilisateur ?')) return
+  if (!confirm('Delete user ?')) return
   await axios.delete(`/api/auth/users/${id}`, { headers: h() }).catch(() => {})
-  toast.success('Utilisateur supprimé'); fetchUsers()
+  toast.success('User deleted'); fetchUsers()
 }
 onMounted(fetchUsers)
 </script>

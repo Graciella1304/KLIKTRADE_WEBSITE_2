@@ -3,8 +3,8 @@
     <Navbar />
     <div class="container wish-page">
       <div class="wish-head">
-        <h1><i class="fa fa-heart"></i> Mes Favoris</h1>
-        <p>{{ items.length }} produit{{ items.length !== 1 ? 's' : '' }} sauvegardé{{ items.length !== 1 ? 's' : '' }}</p>
+        <h1><i class="fa fa-heart"></i> Favorites</h1>
+        <p>{{ items.length }} produit{{ items.length !== 1 ? 's' : '' }} save{{ items.length !== 1 ? 's' : '' }}</p>
       </div>
 
       <div v-if="!userStore.isLoggedIn" class="not-logged">
@@ -16,7 +16,7 @@
 
       <div v-else-if="items.length === 0" class="empty-wish">
         <i class="fa fa-heart-o"></i>
-        <h2>Aucun favori pour l'instant</h2>
+        <h2>No favorites</h2>
         <p>Cliquez sur le cœur d'un produit pour le sauvegarder ici.</p>
         <RouterLink to="/listing" class="btn btn-primary btn-lg"><i class="fa fa-search"></i> Parcourir les annonces</RouterLink>
       </div>
